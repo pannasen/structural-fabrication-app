@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm run install:all | cat
+      - name: Run backend tests
+        run: npm run test:backend | cat
+      - name: Run frontend tests
+        run: npm run test:frontend | cat
+      - name: Run integration tests
+        run: npm run test:integration | cat
+      - name: Bundle reports
+        run: npm run report:bundle | cat
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts
+          path: |
+            backend/test-results
+            backend/coverage
+            frontend/test-results
+            frontend/coverage
+            integration/test-results
+            integration/coverage
+            docs/reports/*.zip

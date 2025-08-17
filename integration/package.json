@@ -1,0 +1,13 @@
+{
+  "name": "structural-fabrication-integration",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "jest --runInBand --coverage"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "jest-junit": "^16.0.0"
+  }
+}

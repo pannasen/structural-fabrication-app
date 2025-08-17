@@ -1,0 +1,17 @@
+{
+  "name": "structural-fabrication-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install && npm --prefix integration install",
+    "test:backend": "npm --prefix backend test",
+    "test:frontend": "npm --prefix frontend test",
+    "test:integration": "npm --prefix integration test",
+    "test:all": "npm run test:backend && npm run test:frontend && npm run test:integration",
+    "report:bundle": "node scripts/bundle-report.js",
+    "ci": "npm run install:all && npm run test:all && npm run report:bundle"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1"
+  }
+}
